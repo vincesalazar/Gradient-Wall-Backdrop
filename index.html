@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Wall</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <section>
+        <h2 id="hero"></h2>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.0/gsap.min.js"></script>
+    <script>
+        // color array for random colors
+        var colorArr = [
+            "#5EB1BF",
+            "#54F2F2",
+            "#FCFCFC",
+            "#F4E04D",
+            "#766C7F",
+            "#947EB0",
+            "#FE5F55",
+            "#FFFAFF",
+            "#D8315B",
+            "#C2A878",
+            "#698F3F"
+        ];
+        var numOfCircles = 750;
+        window.addEventListener("load", () => {
+            //   for loop for gradient bubbles
+            for (var i = 0; i < numOfCircles; i++) {
+                var div = document.createElement("DIV");
+                div.style.padding = Math.ceil(Math.random() * 2) + "rem";
+                div.style.top = Math.ceil(Math.random() * 100) + "vh";
+                div.style.left = Math.ceil(Math.random() * 100) + "vw";
+                // div.style.zIndex = Math.floor(Math.random() * numOfCircles);
+                div.style.background =
+                    "linear-gradient(45deg, rgba(0,0,0,1) 0%," +
+                    " " +
+                    colorArr[Math.floor(Math.random() * colorArr.length)] +
+                    " " +
+                    "100%)";
+                document.body.appendChild(div);
+            }
+            //   gsap animation on each bubble
+            var bubbles = document.querySelectorAll("div");
+            bubbles.forEach((e, i, p) => {
+                e.addEventListener("click", () => {
+                    e.style.backgroundImage = "url('nek.jpg')";
+                    e.style.backgroundPosition = "center";
+                    e.style.backgroundSize = "cover";
+                    e.style.backgroundRepeat = "no-repeat";
+
+                })
+                let tl = gsap.timeline({
+                    repeat: 2000
+                });
+                tl.fromTo(
+                    e,
+                    Math.ceil(Math.random() * 12 + 12), {
+                        y: i * 0.5,
+                        opacity: 0,
+                    }, {
+                        opacity: i * .007,
+                        y: "-200vh"
+                    }
+                );
+            });
+        });
+
+        var hero = document.querySelector("#hero");
+        var text = "It's not over";
+        for (let i = 0; i < text.length; i++) {
+            var span = document.createElement("SPAN");
+            span.innerHTML = text[i];
+            span.style.zIndex = Math.floor(Math.random() * numOfCircles);
+            hero.appendChild(span);
+        }
+        var stl = gsap.timeline({
+            delay: 7
+        });
+        stl.from("span", 0.1, {
+            stagger: 0.2,
+            opacity: 0,
+            y: -100
+        });
+        stl.to("span", 0.1, {
+            stagger: .5,
+            opacity: 0,
+            y: -100,
+        });
+    </script>
+</body>
+
+</html>

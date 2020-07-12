@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('nek.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+div {
+    border-radius: 100%;
+    background: rgb(0, 0, 0);
+    display: inline-block;
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section {
+    position: relative;
+}
+
+h2 {
+    cursor: default;
+    color: white;
+}
